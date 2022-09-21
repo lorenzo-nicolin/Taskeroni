@@ -7,7 +7,7 @@ namespace Taskeroni.Models
         [Required]
         public int id { get; set; }
 
-        public int TaskName { get; set; }
+        public string TaskName { get; set; }
 
         public int TaskStatus{ get; set; }
     }

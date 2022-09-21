@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using Taskeroni.Models;
 
 namespace Taskeroni.Controllers
@@ -14,7 +15,23 @@ namespace Taskeroni.Controllers
         public IActionResult Index()
         {
 
+            var datadb = _db.Tasks.ToList();
+
+            return View(datadb);
+        }
+
+        public IActionResult Create()
+        {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(NewTasks obj)
+        {
+            _db.Tasks.Add(obj);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
